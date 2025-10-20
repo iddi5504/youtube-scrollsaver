@@ -1,6 +1,7 @@
 let currentScrollPosition = 0;
 
 const pagesToScroll = ["/", "/results"];
+const isVideoPage = (url) => url.includes("watch?");
 const userProfile = /^\/@[a-zA-Z0-9]/;
 
 let selectedCategoryChip = null;
@@ -43,6 +44,7 @@ document.addEventListener("scroll", () => {
 
 // Restore scroll position after SPA navigation
 const handleNavigation = () => {
+
   if (!extensionEnabled) return;
 
   if (shouldPageScroll()) {
@@ -80,13 +82,16 @@ function sendUpdate() {
   chrome.storage.sync.set({
     scrollY: parseInt(currentScrollPosition),
     url: location.href,
+    lastVideo: isVideoPage(location.href) ? location.href : undefined
   });
   chrome.runtime.sendMessage({
     action: "update",
     scrollY: parseInt(currentScrollPosition),
     url: location.href,
+    lastVideo: isVideoPage(location.href) ? location.href : undefined
   });
 }
 
 // Initial call
 handleNavigation();
+

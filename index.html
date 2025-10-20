@@ -10,8 +10,9 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        margin: 0;
         padding: 20px;
-        width: 340px;
+        width: 440px;
         background-color: #ffffff;
         min-height: 220px;
         border-left: 5px solid #ff0000;
@@ -93,6 +94,10 @@
         color: #333;
       }
 
+      #lastVideo {
+        padding-right: 5px;
+      }
+
       .info div {
         display: flex;
         justify-content: space-between;
@@ -143,6 +148,19 @@
         <span id="scrollPosition">0px</span>
       </div>
       <div>
+        <span>Last video watched:</span>
+        <span>
+          <span id="lastVideo"> --</span
+          ><a
+            id="lastVideoLink"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Open</a
+          >
+        </span>
+      </div>
+      <div>
         <span>Current URL:</span>
         <span id="currentURL">N/A</span>
       </div>
@@ -160,6 +178,6 @@
       >
     </div>
 
-    <script src="/src/popup.js"></script>
+    <script src="/src/popup.js" type="module"></script>
   </body>
 </html>
