@@ -22,7 +22,7 @@
         "http://*.localhost/*"
     ],
     "action": {
-        "default_popup": "pop-up.html",
+        "default_popup": "index.html",
         "default_icon": "/assets/youtube.png"
     },
     "permissions": [
