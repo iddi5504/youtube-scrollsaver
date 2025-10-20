@@ -1,0 +1,32 @@
+{
+    "manifest_version": 3,
+    "name": "Youtube scroll saver",
+    "version": "1.0",
+    "background": {
+        "service_worker": "/background.js"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://*.youtube.com/*",
+                "http://*.localhost/*"
+            ],
+            "js": [
+                "/src/content.js"
+            ],
+            "type": "module"
+        }
+    ],
+    "host_permissions": [
+        "https://*.youtube.com/*",
+        "http://*.localhost/*"
+    ],
+    "action": {
+        "default_popup": "pop-up.html",
+        "default_icon": "/assets/youtube.png"
+    },
+    "permissions": [
+        "storage",
+        "activeTab"
+    ]
+}
