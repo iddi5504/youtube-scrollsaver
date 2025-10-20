@@ -1,8 +1,7 @@
 {
     "manifest_version": 3,
     "name": "Youtube scroll saver",
-    "version": "1.0",
-    "background": {},
+    "version": "1.0.0",
     "content_scripts": [
         {
             "matches": [
@@ -21,7 +20,12 @@
     ],
     "action": {
         "default_popup": "index.html",
-        "default_icon": "/assets/youtube.png"
+        "default_icon": "/images/youtube.png"
+    },
+    "icons": {
+        "16": "/images/16.png",
+        "48": "/images/48.png",
+        "128": "/images/128.png"
     },
     "permissions": [
         "storage",

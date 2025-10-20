@@ -5,6 +5,7 @@ const scrollPositionEl = document.getElementById("scrollPosition");
 const currentURLEl = document.getElementById("currentURL");
 const lastVideoEl = document.getElementById("lastVideo");
 const lastVideoLink = document.getElementById("lastVideoLink");
+const openYoutubeBtn = document.getElementById("openYoutubeBtn");
 
 // Load saved state
 chrome.storage.sync.get(["enabled", "scrollY", "url", "lastVideo"], (result) => {
@@ -36,20 +37,29 @@ const getCurrentTabUrl = async () => {
             resolve(tabs[0]?.url);
         });
     });
-
 }
+
+
 
 // Update UI function
 async function updateUI(enabled, scrollY = null, url = null, lastVideo = null) {
     label.textContent = `Extension is ${enabled ? "ON" : "OFF"}`;
+
+    const isYoutube = (await getCurrentTabUrl()).includes("youtube");
     if (scrollY !== null) scrollPositionEl.textContent = `${scrollY}px`;
 
-    if (url !== null && (await getCurrentTabUrl()).includes("youtube")) {
+    if (url !== null && isYoutube) {
         currentURLEl.textContent = shortenLink(url);
     }
 
+    if (!isYoutube) {
+        openYoutubeBtn.style.display = "block";
+    }
+
+
     if (lastVideo !== null) lastVideoEl.textContent = shortenLink(lastVideo);
     if (lastVideo !== null) lastVideoLink.href = lastVideo;
+
 }
 
 // Listen for content script updates
